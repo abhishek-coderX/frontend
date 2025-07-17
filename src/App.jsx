@@ -1,36 +1,65 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
-import Home from "./pages/Home";
-import {Provider} from "react-redux"
-import appStore from "../utils/appStore";
+import { useDispatch, useSelector } from "react-redux";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";
-import Connections from "./pages/Connections"
+import Connections from "./pages/Connections";
 import Requests from "./pages/Requests";
+import axios from "axios";
+import { BASE_URL } from "../utils/constants";
+import { addUser } from "../utils/userSlice";
+import { useEffect } from "react";
+
 function App() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const userData = useSelector((store) => store.user);
+
+
+  const fetchUser = async () => {
+    if (userData) return;
+    try {
+      const res = await axios.get(BASE_URL + "/profile/view", {
+        withCredentials: true,
+      });
+      dispatch(addUser(res.data));
+    } catch (error) {
+      console.log("Error fetching user:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  // Redirect unauthenticated users
+  useEffect(() => {
+    const publicRoutes = ["/login", "/signup"];
+    if (!userData && !publicRoutes.includes(location.pathname)) {
+      navigate("/login");
+    }
+
+    if (userData && publicRoutes.includes(location.pathname)) {
+      navigate("/");
+    }
+  }, [userData, location.pathname, navigate]);
+  
+  
   return (
-
-    
-    <> 
-    <Provider store={appStore}>
-    <BrowserRouter>
-     <Navbar/>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login/>} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/feed" element={<Feed/>} />
-          <Route path="/profile" element={<Profile/>} />
-          <Route path="/requests" element={<Requests/>} />
-          <Route path="/connections" element={<Connections/>} />
-
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Feed />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/requests" element={<Requests />} />
+        <Route path="/connections" element={<Connections />} />
+      </Routes>
     </>
-    
   );
 }
 

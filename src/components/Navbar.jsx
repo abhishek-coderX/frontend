@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeUser } from '../../utils/userSlice';
+import { BASE_URL } from '../../utils/constants';
+import axios from 'axios';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -11,11 +13,19 @@ const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  const handleLogout = () => {
-    dispatch(removeUser());
-    setDropdownOpen(false);
-    navigate('/login');
-  };
+const handleLogout = async () => {
+  try {
+    await axios.post(BASE_URL + "/logout", {}, {
+      withCredentials: true,
+    });
+
+    dispatch(removeUser()); 
+    navigate("/login"); 
+  } catch (error) {
+    console.error("Logout failed", error);
+  }
+};
+
 
   const handleProfile = () => {
     setDropdownOpen(false);
@@ -53,13 +63,15 @@ const Navbar = () => {
           Requests
         </button>
 
+       
         {user && (
+          
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="flex items-center gap-2 border-2 border-transparent hover:border-yellow-300 rounded-full p-1 transition"
             >
-              <span className="hidden md:block text-sm">{user.firstName}</span>
+             
               <img
                 src={user.photoUrl || 'https://placehold.co/40x40/f87171/ffffff?text=U'}
                 alt="Profile"

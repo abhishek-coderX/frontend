@@ -1,28 +1,34 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
-import { addUser } from '../../utils/userSlice';
-import { BASE_URL } from '../../utils/constants';
+import axios from "axios";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { addUser } from "../../utils/userSlice";
+import { BASE_URL } from "../../utils/constants";
 
 const Login = () => {
-  const [email, setEmail] = useState('sakshi123@gmail.com');
-  const [password, setPassword] = useState('Sakshi@2330');
+  const [email, setEmail] = useState("sakshi123@gmail.com");
+  const [password, setPassword] = useState("Sakshi@2330");
+  const [err, setErr] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const dispatch=useDispatch()
-  const navigate=useNavigate()
   const handleLogin = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
 
     try {
-      const res = await axios.post(BASE_URL+"/login", {
-        email,
-        password,
-      },{withCredentials:true});
-      dispatch(addUser(res.data))
-      navigate('/feed')
+      const res = await axios.post(
+        BASE_URL + "/login",
+        {
+          email,
+          password,
+        },
+        { withCredentials: true }
+      );
+      dispatch(addUser(res.data));
+      navigate("/");
     } catch (error) {
-      console.log(error); 
+     
+      setErr(error?.response?.statusTexts || "Invalid Credentials !!");
     }
   };
 
@@ -49,9 +55,8 @@ const Login = () => {
             type="password"
             placeholder="Enter your Password"
           />
-
-          <button className="bg-[#0a9600] text-white font-semibold mb-3 rounded-lg cursor-pointer px-4 py-2 w-full text-lg" >
-           Login
+          <button className="bg-[#0a9600] text-white font-semibold mb-3 rounded-lg cursor-pointer px-4 py-2 w-full text-lg">
+            Login
           </button>
         </form>
 
@@ -61,6 +66,11 @@ const Login = () => {
             create new account
           </Link>
         </p>
+        {err && (
+          <p className="text-center  text-base mt-2 text-red-600">
+            {err}
+          </p>
+        )}
       </div>
     </div>
   );
