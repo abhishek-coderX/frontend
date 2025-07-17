@@ -1,34 +1,93 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { removeUser } from '../../utils/userSlice';
 
 const Navbar = () => {
-  return (
-    <div className="navbar bg-red-400 shadow-sm">
-  <div className="flex-1">
-    <a className="btn btn-ghost text-xl">daisyUI</a>
-  </div>
-  <div className="flex gap-2">
-    <div className="dropdown dropdown-end">
-      <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <img
-            alt="Tailwind CSS Navbar component"
-            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-        </div>
-      </div>
-      <ul
-        tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
-        <li>
-          <a className="justify-between">
-            Profile
-          </a>
-        </li>
-        <li><a>Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</div>
-  )
-}
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
 
-export default Navbar
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  const handleLogout = () => {
+    dispatch(removeUser());
+    setDropdownOpen(false);
+    navigate('/login');
+  };
+
+  const handleProfile = () => {
+    setDropdownOpen(false);
+    navigate('/profile');
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="navbar bg-red-400 shadow-md px-4 md:px-6 text-white">
+      <div className="flex-1">
+        <button
+          className="text-xl md:text-2xl font-bold text-white hover:text-yellow-300 transition-colors"
+          onClick={() => navigate('/')}
+        >
+          DevTinder
+        </button>
+      </div>
+
+      <div className="flex gap-3 md:gap-6 items-center font-semibold">
+        <button onClick={() => navigate('/connections')} className="hover:text-yellow-300 text-sm md:text-base transition-colors">
+          Connections
+        </button>
+        <button onClick={() => navigate('/requests')} className="hover:text-yellow-300 text-sm md:text-base transition-colors">
+          Requests
+        </button>
+
+        {user && (
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="flex items-center gap-2 border-2 border-transparent hover:border-yellow-300 rounded-full p-1 transition"
+            >
+              <span className="hidden md:block text-sm">{user.firstName}</span>
+              <img
+                src={user.photoUrl || 'https://placehold.co/40x40/f87171/ffffff?text=U'}
+                alt="Profile"
+                className="w-8 h-8 rounded-full object-cover"
+                onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/40x40/f87171/ffffff?text=U'; }}
+              />
+            </button>
+            {dropdownOpen && (
+              <div className="absolute right-0 mt-2 w-40 bg-white rounded-md shadow-lg py-1 z-50">
+                <button
+                  onClick={handleProfile}
+                  className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                >
+                  Profile
+                </button>
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-red-50"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Navbar;
