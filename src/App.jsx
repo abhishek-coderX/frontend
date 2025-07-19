@@ -35,18 +35,20 @@ function App() {
     fetchUser();
   }, []);
 
-  // Redirect unauthenticated users
-  useEffect(() => {
-    const publicRoutes = ["/login", "/signup"];
-    if (!userData && !publicRoutes.includes(location.pathname)) {
-      navigate("/login");
-    }
 
-    if (userData && publicRoutes.includes(location.pathname)) {
-      navigate("/");
-    }
-  }, [userData, location.pathname, navigate]);
+  useEffect(() => {
+  const publicRoutes = ["/login", "/signup"];
   
+  if (userData === undefined) return; 
+  
+  if (!userData && !publicRoutes.includes(location.pathname)) {
+    navigate("/login");
+  }
+
+  if (userData && publicRoutes.includes(location.pathname)) {
+    navigate("/");
+  }
+}, [userData, location.pathname, navigate]);
   
   return (
     <>

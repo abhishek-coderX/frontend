@@ -29,5 +29,7 @@
 - if token is not present redirect yuser to login page
 - lets make the logout matlab token delete karna hai and login pe redirect karna hai
 - Logout feature token delete karo and store mein se remove karo
-- profile page banao
-- 
+- lets create the feed page
+
+- get the feed api working also add in the store 
+- add the card 

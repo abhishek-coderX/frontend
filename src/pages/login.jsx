@@ -6,8 +6,8 @@ import { addUser } from "../../utils/userSlice";
 import { BASE_URL } from "../../utils/constants";
 
 const Login = () => {
-  const [email, setEmail] = useState("sakshi123@gmail.com");
-  const [password, setPassword] = useState("Sakshi@2330");
+  const [email, setEmail] = useState("aisha.khan@example.org");
+  const [password, setPassword] = useState("AishaK$trong7");
   const [err, setErr] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
