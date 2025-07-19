@@ -2,12 +2,26 @@ import axios from 'axios'
 import React from 'react'
 import { BASE_URL } from '../../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
-import { addRequests } from '../../utils/requestSlice'
+import { addRequests, removeRequests } from '../../utils/requestSlice'
 import { useEffect } from 'react'
 
 const Requests = () => {
   const dispatch=useDispatch()
   const requests=useSelector((store)=>store.requests)
+
+  const reviewRequests=async(status,_id)=>{
+    try {
+      const res=await axios.post(BASE_URL+"/request/review/" + status + "/" + _id,{},{withCredentials:true})
+      dispatch(removeRequests(_id))
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+
+
+
   const fetchRequests=async()=>{
     try {
       const res=await axios.get(BASE_URL+"/user/requests/received",{withCredentials:true})
@@ -16,6 +30,8 @@ const Requests = () => {
       console.log(error);
     }
   }
+
+
 
   useEffect(()=>{
     fetchRequests()
@@ -27,8 +43,7 @@ const Requests = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-900 text-gray-100">
         <div className="text-center">
           <div className="text-6xl mb-4">⚓</div>
-          <h2 className="text-2xl font-bold mb-2">No Crew Found</h2>
-          <p>Start connecting with fellow developers!</p>
+          <h2 className="text-2xl font-bold mb-2">No Request found</h2>
         </div>
       </div>
     );
@@ -41,6 +56,7 @@ const Requests = () => {
           {requests?.map((req) => {
             const { _id, fromUserId } = req;
             const {
+              
               firstName,
               lastName,
               photoUrl,
@@ -78,10 +94,10 @@ const Requests = () => {
                   </div>
 
                   <div className="flex gap-3 ml-4">
-                    <button className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-2 rounded-lg transition-colors duration-200 shadow-md">
+                    <button onClick={()=>reviewRequests("accepted",_id)} className="bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-2 rounded-lg transition-colors duration-200 shadow-md">
                       Accept
                     </button>
-                    <button className="bg-red-600 hover:bg-red-700 text-white font-medium px-6 py-2 rounded-lg transition-colors duration-200 shadow-md">
+                    <button onClick={()=>reviewRequests("rejected",_id)} className="bg-red-600 hover:bg-red-700 text-white font-medium px-6 py-2 rounded-lg transition-colors duration-200 shadow-md">
                       Reject
                     </button>
                   </div>
