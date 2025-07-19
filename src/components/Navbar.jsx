@@ -29,7 +29,7 @@ const handleLogout = async () => {
 
   const handleProfile = () => {
     setDropdownOpen(false);
-    navigate('/profile');
+    navigate('/profile/view');
   };
 
   useEffect(() => {
@@ -45,13 +45,13 @@ const handleLogout = async () => {
   }, []);
 
   return (
-    <div className="navbar bg-red-400 shadow-md px-4 md:px-6 text-white">
+    <div className="navbar bg-blue-500 shadow-md px-4 md:px-6 text-white">
       <div className="flex-1">
         <button
           className="text-xl md:text-2xl font-bold text-white hover:text-yellow-300 transition-colors"
           onClick={() => navigate('/')}
         >
-          DevTinder
+          ⚓ CrewMates
         </button>
       </div>
 

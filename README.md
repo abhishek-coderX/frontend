@@ -33,3 +33,17 @@
 
 - get the feed api working also add in the store 
 - add the card 
+- profile page
+- create profile edit and password edit page
+- handle error show toas 
+- render user cards to do live editing of profile
+
+- forgot password page 
+
+
+- now lets create logic for interested and ignored
+- lets make continuous feed 
+- now connections
+- make the slice for connection 
+- just s lagana tha connection mein to make connections and 3 hours hogaya error fix karne mein
+- view profile and message chat with connection usko baad mein banayenge

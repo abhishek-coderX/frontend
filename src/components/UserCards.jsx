@@ -2,10 +2,9 @@ import React from 'react';
 import { Heart, X, MapPin, Briefcase, Calendar, Users } from 'lucide-react';
 
 export default function UserCards({ user }) {
-console.log(user);
   if (!user) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 flex items-center justify-center">
+      <div className="h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 flex items-center justify-center">
         <div className="text-gray-500">Loading user profile...</div>
       </div>
     );
@@ -13,7 +12,7 @@ console.log(user);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
-      <div className="relative">
+      <div className="relative ">
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden  w-80 mx-auto transform hover:scale-105 transition-transform duration-300">
           <div className="relative">
             <img 
@@ -21,13 +20,18 @@ console.log(user);
               alt={`${user.firstName} ${user.lastName}`}
               className="w-full h-60 object-cover"
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-6">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/0 to-transparent p-4">
               <h1 className="text-white text-2xl font-bold mb-1">
                 {user.firstName} {user.lastName}
               </h1>
-              <div className="flex items-center text-white/90 text-sm mb-2">
-                <Calendar className="w-4 h-4 mr-1" />
-                <span>{user.age} years old</span>
+              <div className="flex items-center text-white/90 text-sm gap-2 ">
+               
+                <span>{user.age}</span>
+                <span>{ user.gender} </span>
+
+              </div>
+              <div className="flex items-center text-white/90 text-sm ">
+
               </div>
             </div>
           </div>

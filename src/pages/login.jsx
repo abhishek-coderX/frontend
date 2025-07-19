@@ -60,11 +60,16 @@ const Login = () => {
           </button>
         </form>
 
-        <p className="text-center">
+        <p className="flex text-center justify-center gap-4">
+           <Link to="/forgot/password" className="text-red-400">forgot password</Link>
           New here?{" "}
           <Link to="/signup" className="text-blue-600">
             create new account
           </Link>
+          
+        </p>
+        <p>
+         
         </p>
         {err && (
           <p className="text-center  text-base mt-2 text-red-600">
