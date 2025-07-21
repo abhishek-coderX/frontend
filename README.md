@@ -47,3 +47,13 @@
 - make the slice for connection 
 - just s lagana tha connection mein to make connections and 3 hours hogaya error fix karne mein
 - view profile and message chat with connection usko baad mein banayenge
+- accept and reject part complete kar
+- signup bana
+- send ignore and interested 
+
+testing kar full flow and improve the ui
+
+
+- chat feature and view profile option to connect with the user 
+
+then deploy and launch it 
