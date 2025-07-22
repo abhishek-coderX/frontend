@@ -26,7 +26,7 @@ const Connections = () => {
 
   if (connections.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-gray-100">
+      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-900 text-gray-100">
         <div className="text-center">
           <div className="text-6xl mb-4">⚓</div>
           <h2 className="text-2xl font-bold mb-2">No Crew Found</h2>

@@ -5,7 +5,7 @@ import ProfileEdit from '../components/ProfileEdit'
 const Profile = () => {
   const user=useSelector((store)=>store.user)
   return (
-    <div>
+    <div >
       <ProfileEdit user={user}/>
     </div>
   )

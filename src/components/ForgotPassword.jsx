@@ -70,24 +70,21 @@ const ForgotPassword = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base-100 dark:bg-gray-900 p-4">
+   <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-base-100 dark:bg-gray-900 p-4">
       <div className="card w-full max-w-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-xl">
         <div className="card-body">
-          <h2 className="card-title justify-center mb-2">Reset Password</h2>
-          <p className="text-center text-gray-600 dark:text-gray-300 mb-6">
-            Enter your email and new password to reset your account password
-          </p>
+         
 
           <form onSubmit={handlePasswordReset}>
             <div className="form-control mb-4">
               <label className="label">
-                <span className="label-text font-semibold dark:text-gray-200">Email Address</span>
+                <span className="label-text mb-2 font-semibold dark:text-gray-200">Email Address</span>
               </label>
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="input input-bordered w-full"
+                className="border-b-2 border-gray-600 focus:border-blue-400 bg-transparent py-2 px-0 mb-7 w-full text-sm text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-0"
                 placeholder="Enter your email"
                 required
               />
@@ -95,13 +92,13 @@ const ForgotPassword = () => {
 
             <div className="form-control mb-4">
               <label className="label">
-                <span className="label-text font-semibold dark:text-gray-200">New Password</span>
+                <span className="label-text mb-2 font-semibold dark:text-gray-200">New Password</span>
               </label>
               <input
                 type="password"
                 value={newPassword}
                 onChange={(e) => setNewPassword(e.target.value)}
-                className="input input-bordered w-full"
+                className="border-b-2 border-gray-600 focus:border-blue-400 bg-transparent py-2 px-0 mb-7 w-full text-sm text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-0"
                 placeholder="Enter new password"
                 required
               />
@@ -109,13 +106,13 @@ const ForgotPassword = () => {
 
             <div className="form-control mb-6">
               <label className="label">
-                <span className="label-text font-semibold dark:text-gray-200">Confirm New Password</span>
+                <span className="label-text mb-2 font-semibold dark:text-gray-200">Confirm New Password</span>
               </label>
               <input
                 type="password"
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
-                className="input input-bordered w-full"
+                className="border-b-2 border-gray-600 focus:border-blue-400 bg-transparent py-2 px-0 mb-7 w-full text-sm text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-0"
                 placeholder="Confirm new password"
                 required
               />
@@ -138,11 +135,10 @@ const ForgotPassword = () => {
             </div>
           </form>
 
-          <div className="divider dark:before:bg-gray-600 dark:after:bg-gray-600"></div>
 
           <div className="text-center">
             <button
-              className="btn btn-ghost dark:text-gray-300"
+              className="btn w-full dark:text-gray-300"
               onClick={() => navigate("/login")}
             >
               Back to Login

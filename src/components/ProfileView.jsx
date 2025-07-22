@@ -1,4 +1,3 @@
-// ✅ Only style updated: dark mode colors + centered card
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -30,7 +29,7 @@ const ProfileView = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex bg-base-200 justify-center items-center min-h-[calc(100vh-4rem)]">
         <div className="loading loading-spinner loading-lg"></div>
       </div>
     );
@@ -38,7 +37,7 @@ const ProfileView = () => {
 
   if (error) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex justify-center items-center min-h-[calc(100vh-4rem)]">
         <div className="text-red-500 text-center">
           <p>{error.message || error}</p>
         </div>
@@ -47,7 +46,7 @@ const ProfileView = () => {
   }
 
   return (
-    <div className="min-h-screen bg-base-100 dark:bg-gray-900 p-4 flex justify-center items-center">
+    <div className="min-h-[calc(100vh-4rem)] bg-base-100 dark:bg-gray-900 p-4 flex justify-center items-center">
       <div className="w-full max-w-4xl">
         <div className="card bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-xl">
           <div className="card-body">

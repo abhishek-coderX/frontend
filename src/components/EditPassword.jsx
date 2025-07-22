@@ -62,17 +62,16 @@ const EditPassword = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 px-4">
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-900 px-4">
       <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-lg p-6 space-y-4 text-gray-100">
-        <h2 className="text-2xl font-bold text-center">Change Password</h2>
       
 
-        <form onSubmit={handlePasswordChange} className="space-y-4">
+        <form onSubmit={handlePasswordChange} >
           <div>
-            <label className="block mb-1 font-semibold">Current Password</label>
+            <label className="label-text mb-2 font-semibold dark:text-gray-200">Current Password</label>
             <input
               type="password"
-              className="input input-bordered w-full bg-gray-700 text-gray-100 border-gray-600 placeholder-gray-400"
+              className="border-b-2 border-gray-600 focus:border-blue-400 bg-transparent py-2 px-0 mb-7 w-full text-sm text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-0"
               placeholder="Enter current password"
               value={oldPassword}
               onChange={(e) => setOldPassword(e.target.value)}
@@ -81,10 +80,10 @@ const EditPassword = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-semibold">New Password</label>
+            <label className="label-text mb-2 font-semibold dark:text-gray-200">New Password</label>
             <input
               type="password"
-              className="input input-bordered w-full bg-gray-700 text-gray-100 border-gray-600 placeholder-gray-400"
+                className="border-b-2 border-gray-600 focus:border-blue-400 bg-transparent py-2 px-0 mb-7 w-full text-sm text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-0"
               placeholder="Enter new password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -93,10 +92,10 @@ const EditPassword = () => {
           </div>
 
           <div>
-            <label className="block mb-1 font-semibold">Confirm New Password</label>
+            <label className="label-text mb-2 font-semibold dark:text-gray-200">Confirm New Password</label>
             <input
               type="password"
-              className="input input-bordered w-full bg-gray-700 text-gray-100 border-gray-600 placeholder-gray-400"
+                className="border-b-2 border-gray-600 focus:border-blue-400 bg-transparent py-2 px-0 mb-7 w-full text-sm text-gray-100 placeholder:text-gray-400 focus:outline-none focus:ring-0"
               placeholder="Confirm new password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
