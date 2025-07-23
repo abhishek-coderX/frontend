@@ -4,10 +4,14 @@ import { BASE_URL } from "../../utils/constants";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addConnections } from "../../utils/connectionSlice";
+import { useNavigate } from "react-router-dom"; // 1. Import useNavigate
+import { setSelectedConversation } from "../../utils/chatSlice"; // 2. Import the action
+
 
 const Connections = () => {
   const connections = useSelector((store) => store.connections);
   const dispatch = useDispatch();
+   const navigate = useNavigate();
 
   const fetchConnections = async () => {
     try {
@@ -23,6 +27,12 @@ const Connections = () => {
   useEffect(() => {
     fetchConnections();
   }, []);
+
+
+  const handleStartChat = (connection) => {
+    dispatch(setSelectedConversation(connection));
+    navigate(`/chat/${connection._id}`); 
+  };
 
   if (connections.length === 0) {
     return (
@@ -81,6 +91,12 @@ const Connections = () => {
                     </p>
                   </div>
                   <div>
+                    <button 
+                        className="btn btn-primary w-full"
+                        onClick={() => handleStartChat(connection)}
+                    >
+                        Chat
+                    </button>
                    {/* view profile and message feature banana hai */}
                   </div>
                   

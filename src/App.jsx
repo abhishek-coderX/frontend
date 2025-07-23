@@ -94,10 +94,12 @@ import Requests from "./pages/Requests";
 import axios from "axios";
 import { BASE_URL } from "../utils/constants";
 import { addUser } from "../utils/userSlice";
+import { addConnections } from "../utils/connectionSlice"; // <-- 1. Import action
 import { useEffect, useState,} from "react"; 
 import ProfileView from "./components/ProfileView";
 import EditPassword from "./components/EditPassword";
 import ForgotPassword from "./components/ForgotPassword";
+import ChatPage from "./pages/ChatPage";
 
 
 
@@ -115,11 +117,13 @@ function App() {
       return;
     }
     try {
-      const res = await axios.get(BASE_URL + "/profile/view", {
-        withCredentials: true,
-      });
-      dispatch(addUser(res.data));
-    } catch (error) {
+      const [profileRes, connectionsRes] = await Promise.all([
+        axios.get(BASE_URL + "/profile/view", { withCredentials: true }),
+        axios.get(BASE_URL + "/user/connections", { withCredentials: true }),
+      ]);
+      dispatch(addUser(profileRes.data));
+      dispatch(addConnections(connectionsRes.data?.data || []));
+        } catch (error) {
       console.log("Error fetching user:", error);
     } finally {
       setIsLoading(false);
@@ -146,7 +150,7 @@ function App() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-screen w-full bg-base-200">
+      <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] w-full bg-base-200">
         <p className="text-xl text-white">Loading...</p>
       </div>
     );
@@ -171,6 +175,9 @@ function App() {
           <Route path="/connections" element={<Connections />} />
           <Route path="/password/edit" element={<EditPassword />} />
           <Route path="/forgot/password" element={<ForgotPassword />} />{" "}
+          <Route path="/chat/:userId" element={<ChatPage />} />
+          <Route path="/chat" element={<ChatPage />} />
+
         </Routes>
       </div>
     </>

@@ -386,13 +386,13 @@ return (
       </div>
     </div>
 
-    <div className="card p-0 bg-base-100 shadow-xl">
+    <div className="card p-0 h-full bg-base-100 shadow-xl">
       <div className="card-body sm:p-6">
         <h2 className="card-title text-base-content/80 text-base sm:text-lg">
           Live Preview
         </h2>
-        <div className="divider -mt-1"></div>
-       <div className=" -mt-35  w-full">
+        <div className="divider "></div>
+       <div className="ml-33">
         <UserCards 
           user={{
             photoUrl,
@@ -403,8 +403,7 @@ return (
             gender,
             skills: skills.split(',').map(skill => skill.trim()).filter(skill => skill),
           }}
-        />
-       </div>
+        /></div>
       </div>
     </div>
     
