@@ -289,7 +289,7 @@ const ProfileEdit = ({ user }) => {
     }
   };
 return (
-<div className="min-h-[calc(100vh-4rem)] bg-gradient-to-br from-base-200 to-base-300 p-2 sm:p-4 md:p-8">
+<div className="min-h-screen bg-gradient-to-br from-base-200 to-base-300 p-2 sm:p-4 md:p-8 bg-center bg-cover">
 
   <div className="max-w-7xl mx-auto mb-4 sm:mb-6 md:mb-8">
     <div className="breadcrumbs text-xs sm:text-sm">
@@ -301,7 +301,7 @@ return (
     <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-base-content mt-2">Edit Your Profile</h1>
   </div>
 
-  <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">
+  <div className="max-w-7xl pb-5  mx-auto grid lg:grid-cols-2 gap-4 sm:gap-6 md:gap-8 items-start">
 
     <div className="card bg-base-100 shadow-xl h-full">
       <div className="card-body flex flex-col  sm:p-6">
@@ -326,6 +326,7 @@ return (
             <div className="form-control">
               <label className="label mb-2 font-semibold text-sm sm:text-base">Gender</label>
               <select value={gender} onChange={(e) => setGender(e.target.value)} className="select border-none outline-none bg-base-200 focus:outline-none focus:border-none focus:ring-0">
+                <option value="select">select</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="others">Others</option>
@@ -373,8 +374,8 @@ return (
           </div>
         )}
 
-        <div className="card-actions justify-end pt-4 sm:pt-6 mt-auto border-t border-base-300 flex-col sm:flex-row gap-2 sm:gap-0">
-          <button className="btn btn-ghost w-full sm:w-auto order-2 sm:order-1" onClick={() => navigate("/profile/view")}>Cancel</button>
+        <div className="card-actions justify-start pt-4 sm:pt-6 mt-auto border-t border-base-300 flex-col sm:flex-row gap-4 sm:gap-0">
+          <button className="btn btn-ghost w-full sm:w-auto order-2 mr-2 sm:order-1" onClick={() => navigate("/profile/view")}>Cancel</button>
           <button
             className={`btn btn-primary w-full sm:w-auto order-1 sm:order-2 ${loading ? 'loading' : ''}`}
             onClick={SaveProfile}
@@ -386,13 +387,13 @@ return (
       </div>
     </div>
 
-    <div className="card p-0 h-full bg-base-100 shadow-xl">
+    <div className="card p-4   h-full bg-base-100 shadow-xl">
       <div className="card-body sm:p-6">
         <h2 className="card-title text-base-content/80 text-base sm:text-lg">
           Live Preview
         </h2>
         <div className="divider "></div>
-       <div className="ml-33">
+       <div className="ml-33 ">
         <UserCards 
           user={{
             photoUrl,

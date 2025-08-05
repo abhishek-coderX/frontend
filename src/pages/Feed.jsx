@@ -30,7 +30,7 @@
   
 
 
-//   if(!feed || feed.length<=0) return <div className="flex justify-center bg-base-200 items-center min-h-[calc(100vh-4rem)]">
+//   if(!feed || feed.length<=0) return <div className="flex justify-center bg-base-200 items-center min-h-screen">
 //       <div><h1 className="text-2xl text-white ">
 //         No new users found
       
@@ -41,12 +41,12 @@
 //     </div>
 
 //   return (
-//     <div className="min-h-[calc(100vh-4rem)] w-full ">
+//     <div className="min-h-screen w-full ">
 //       {feed && feed.length > 0 ? (
 //         <UserCards user={feed[0]} />
        
 //       ) : (
-//         <div className="flex justify-center items-center min-h-[calc(100vh-4rem)] bg-base-200">
+//         <div className="flex justify-center items-center min-h-screen bg-base-200">
 //           <div className="loading loading-spinner loading-lg"></div>
 //         </div>
 //       )}
@@ -88,7 +88,7 @@
 
 //   if (!feed) {
 //     return (
-//       <div className="flex justify-center items-center min-h-[calc(100vh-4rem)] bg-base-200">
+//       <div className="flex justify-center items-center min-h-screen bg-base-200">
 //         <div className="loading loading-spinner loading-lg"></div>
 //       </div>
 //     );
@@ -96,7 +96,7 @@
 
 //   if (feed.length === 0) {
 //     return (
-//       <div className="flex justify-center bg-base-200 items-center min-h-[calc(100vh-4rem)]">
+//       <div className="flex justify-center bg-base-200 items-center min-h-screen">
 //         <div>
 //           <h1 className="text-2xl text-white">No new users found</h1>
 //         </div>
@@ -106,7 +106,7 @@
 
 //   return (
 //     // ✨ This div becomes the stacking container
-//     <div className="grid h-[calc(100vh-4rem)] w-full place-items-center bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
+//     <div className="grid h-full w-full place-items-center bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50">
 //       <AnimatePresence>
 //         {feed.map((user, index) => {
 //           return (
@@ -155,7 +155,7 @@ const Feed = () => {
 
   if (!feed) {
     return (
-      <div className="flex justify-center items-center min-h-[calc(100vh-4rem)] bg-base-200">
+      <div className="flex justify-center items-center min-h-screen ">
         <div className="loading loading-spinner loading-lg"></div>
       </div>
     );
@@ -163,8 +163,14 @@ const Feed = () => {
 
   if (feed.length === 0) {
     return (
-      <div className="flex justify-center bg-base-200 items-center min-h-[calc(100vh-4rem)]">
-        <div>
+      <div className="flex justify-center  items-center min-h-screen bg-cover bg-center bg-no-repeat"
+     style={{ 
+      backgroundImage: "url('/sky1.jpg')",
+    }}
+    
+    >
+       
+        <div >
           <h1 className="text-2xl text-white">No new users found</h1>
         </div>
       </div>
@@ -172,7 +178,13 @@ const Feed = () => {
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center p-4">
+    <div
+      className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat"
+    style={{ 
+      backgroundImage: "url('/sky3.jpg')"}}
+   >
+       
+  
       <div className="relative">
         <div className="grid place-items-center">
           <AnimatePresence>

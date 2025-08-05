@@ -53,7 +53,7 @@ const Navbar = () => {
   },[user])
 
   return (
-   <div className="navbar bg-blue px-4 z-100 md:px-6 text-black">
+   <div className="navbar fixed top-0 left-0 w-full z-50 bg-blue px-4 md:px-6 text-black border-b border-gray-700 shadow-lg">
   <div className="flex-1">
     <button
       className="text-xl md:text-2xl font-bold text-white cursor-pointer hover:scale-105 transition-all transition-colors"
@@ -70,6 +70,8 @@ const Navbar = () => {
           Welcome, {user.firstName}
         </span>
       </div>
+
+     
 
       <div className="relative" ref={dropdownRef}>
         <button

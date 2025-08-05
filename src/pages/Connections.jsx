@@ -36,7 +36,13 @@ const Connections = () => {
 
   if (connections.length === 0) {
     return (
-      <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-900 text-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-base-200 bg-center text-gray-100"
+      
+       // Correct opacity format (0-1)
+    
+    
+      >
+        
         <div className="text-center">
           <div className="text-6xl mb-4">⚓</div>
           <h2 className="text-2xl font-bold mb-2">No Crew Found</h2>
@@ -47,7 +53,13 @@ const Connections = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-100 p-4">
+    <div className="min-h-screen text-gray-100 p-4" 
+    style={{ 
+      backgroundImage: "url('/sky1.jpg')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    }}
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold mb-2">⚓ Your Crew</h1>
@@ -72,7 +84,7 @@ const Connections = () => {
             return (
               <div
                 key={_id}
-                className="bg-gray-800 rounded-lg shadow-md p-6 transition-shadow hover:shadow-lg"
+                className=" rounded-lg shadow-md p-6 transition-shadow hover:shadow-lg"
               >
                 <div className="flex items-center mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden mr-4">

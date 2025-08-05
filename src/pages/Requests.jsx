@@ -40,7 +40,8 @@ const Requests = () => {
 
   if (requests.length === 0) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900 text-gray-100">
+      <div className="min-h-screen flex items-center justify-center bg-base-200 text-gray-100 bg-center bg-cover"
+      >
         <div className="text-center">
           <div className="text-6xl mb-4">⚓</div>
           <h2 className="text-2xl font-bold mb-2">No Request found</h2>
@@ -48,7 +49,9 @@ const Requests = () => {
       </div>
     );
   }  return (
-    <div className="min-h-screen bg-slate-900 text-gray-100 p-6">
+    <div className="min-h-screen bg-slate-900 text-gray-100 p-6 bg-center bg-cover"
+      style={{ backgroundImage: "url('/sky3.jpg')" }}
+    >
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-center text-white">🛎️ Pending Requests</h1>
 

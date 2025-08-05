@@ -51,7 +51,7 @@ const EditPassword = () => {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className="min-h-screen flex items-center justify-center ">
         <div className="w-96 bg-gray-800 rounded-xl shadow-lg p-6 text-center">
           <div className="text-green-400 text-6xl mb-4">✓</div>
           <h2 className="text-2xl font-bold text-green-400 mb-2">Success!</h2>
@@ -62,7 +62,9 @@ const EditPassword = () => {
   }
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center bg-gray-900 px-4">
+    <div className="min-h-screen flex items-center justify-center bg-center bg-cover px-4"
+      style={{ backgroundImage: "url('/sky3.jpg')" }}
+    >
       <div className="w-full max-w-md bg-gray-800 rounded-xl shadow-lg p-6 space-y-4 text-gray-100">
       
 

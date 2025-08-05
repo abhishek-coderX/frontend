@@ -256,7 +256,7 @@ export default function UserCards({ user, isTopCard, removeUser }) {
 
   if (!user) {
     return (
-      <div className="min-h-[calc(100vh-4rem)] bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-pink-50 via-purple-50 to-indigo-50 flex items-center justify-center">
         <div className="text-gray-500">Loading user profile...</div>
       </div>
     );
@@ -350,3 +350,6 @@ export default function UserCards({ user, isTopCard, removeUser }) {
     </motion.div>
   );
 }
+
+
+

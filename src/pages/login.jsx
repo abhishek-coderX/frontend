@@ -193,14 +193,22 @@ const Login = () => {
   
   if (loading) {
     return (
-      <div className="flex bg-base-200 justify-center items-center min-h-[calc(100vh-4rem)]">
+      <div className="flex  justify-center items-center min-h-screen">
         <div className="loading loading-spinner loading-lg"></div>
       </div>
     );
   }
   return (
-    <div className="min-h-[calc(100vh-4rem)] w-full flex items-center justify-center overflow-hidden bg-gray-900">
-      <div className="p-8 bg-gray-800 rounded-xl shadow-lg shadow-gray-700/50 w-full max-w-md">
+    <div className="min-h-screen w-full flex items-center justify-end pr-10  overflow-hidden  bg-cover bg-center bg-no-repeat  "
+      style={{
+    backgroundImage: isLoginForm
+      ? "url('/code3.png')"
+      : "url('/code2.png')",
+  }}
+    
+    >
+         
+      <div className="p-8 rounded-2xl w-full max-w-md shadow-xl backdrop-blur-md bg-white/10 border border-white/20 text-black">
        
         <form onSubmit={isLoginForm ? handleLogin : handleSignup}>
           {!isLoginForm && (
