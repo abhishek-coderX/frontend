@@ -85,7 +85,7 @@
 
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Login from "./pages/Login";
+import Login from "./pages/LoginSignup";
 import { useDispatch, useSelector } from "react-redux";
 import Feed from "./pages/Feed";
 import Profile from "./pages/Profile";

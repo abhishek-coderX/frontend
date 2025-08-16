@@ -143,7 +143,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../../utils/userSlice";
 import { BASE_URL } from "../../utils/constants";
 
-const Login = () => {
+const LoginSignup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -288,4 +288,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LoginSignup;
