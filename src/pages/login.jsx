@@ -144,8 +144,8 @@ import { addUser } from "../../utils/userSlice";
 import { BASE_URL } from "../../utils/constants";
 
 const Login = () => {
-  const [email, setEmail] = useState("aisha.khan@example.org");
-  const [password, setPassword] = useState("AishaK$trong7");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [err, setErr] = useState("");
