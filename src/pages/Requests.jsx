@@ -75,7 +75,7 @@ const Requests = () => {
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
-                    <img
+                    <img loading="lazy"
                       src={photoUrl || "https://placehold.co/64x64"}
                       alt={`${firstName} ${lastName}`}
                       className="w-16 h-16 rounded-full object-cover border-2 border-slate-600"

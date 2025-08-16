@@ -54,7 +54,7 @@
 //     <>
 //       <div className="relative h-screen w-full">
 //         {/* Background image */}
-//         <img
+//         <img loading="lazy"
 //           src="https://cf-img-a-in.tosshub.com/sites/visualstory/wp/2024/08/luffy-and-zoro.jpg?size=*:900"
 //           alt="Background"
 //           className="fixed top-0 left-0 w-full h-full object-cover -z-10"

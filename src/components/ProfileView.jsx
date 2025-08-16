@@ -58,7 +58,7 @@ const ProfileView = () => {
                 <div className="flex-shrink-0">
                   <div className="avatar">
                     <div className="w-48 h-48 rounded-full">
-                      <img
+                      <img loading="lazy"
                         src={user?.photoUrl || "https://via.placeholder.com/200"}
                         alt="Profile"
                         className="w-full h-full object-cover"

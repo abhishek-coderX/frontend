@@ -33,7 +33,7 @@
 //       <div className="relative ">
 //         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden  w-80 mx-auto transform hover:scale-105 transition-transform duration-300">
 //           <div className="relative">
-//             <img
+//             <img loading="lazy"
 //               src={user.photoUrl}
 //               alt={`${user.firstName} ${user.lastName}`}
 //               className="w-full h-60 object-cover"
@@ -158,7 +158,7 @@
 //       {/* Your original card content goes here */}
 //       <div className="h-full w-full overflow-hidden rounded-3xl">
 //         <div className="relative h-full">
-//           <img
+//           <img loading="lazy"
 //             src={user.photoUrl}
 //             alt={`${user.firstName} ${user.lastName}`}
 //             className="pointer-events-none h-1/2 w-full object-cover" // prevent image drag
@@ -282,7 +282,7 @@ export default function UserCards({ user, isTopCard, removeUser }) {
     >
       <div className="bg-white rounded-3xl  overflow-hidden w-80 mx-auto transform hover:scale-105 transition-transform duration-300">
         <div className="relative">
-          <img
+          <img loading="lazy"
             src={user.photoUrl}
             alt={`${user.firstName} ${user.lastName}`}
             className="w-full h-60 object-cover pointer-events-none"

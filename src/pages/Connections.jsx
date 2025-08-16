@@ -88,7 +88,7 @@ const Connections = () => {
               >
                 <div className="flex items-center mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
-                    <img
+                    <img loading="lazy"
                       src={photoUrl || "https://via.placeholder.com/64"}
                       alt={`${firstName} ${lastName}`}
                       className="w-full h-full object-cover"

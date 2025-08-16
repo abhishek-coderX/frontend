@@ -78,7 +78,7 @@ const Navbar = () => {
           onClick={() => setDropdownOpen(!dropdownOpen)}
           className="flex items-center gap-2 border-2 border-transparent hover:border-yellow-300 rounded-full p-1 transition"
         >
-          <img
+          <img loading="lazy"
             src={
               user.photoUrl ||
               "https://placehold.co/40x40/f87171/ffffff?text=U"
