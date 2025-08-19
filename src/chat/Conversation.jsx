@@ -18,7 +18,7 @@ const Conversation = ({ conversation }) => {
     >
       <div className={`avatar ${isOnline ? "online" : "offline"}`}>
         <div className="w-12 rounded-full">
-          <img loading="lazy" src={conversation.photoUrl} alt="user avatar" />
+          <img decoding="async"loading="lazy" src={conversation.photoUrl} alt="user avatar" />
         </div>
       </div>
       <div className="flex flex-col flex-1">

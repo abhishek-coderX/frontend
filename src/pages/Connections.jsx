@@ -84,11 +84,11 @@ const Connections = () => {
             return (
               <div
                 key={_id}
-                className=" rounded-lg shadow-md p-6 transition-shadow hover:shadow-lg"
+                className=" rounded-lg shadow-md p-6 bg-black/50 transition-shadow hover:shadow-lg"
               >
                 <div className="flex items-center mb-4">
                   <div className="w-16 h-16 rounded-full overflow-hidden mr-4">
-                    <img loading="lazy"
+                    <img decoding="async"loading="lazy"
                       src={photoUrl || "https://via.placeholder.com/64"}
                       alt={`${firstName} ${lastName}`}
                       className="w-full h-full object-cover"

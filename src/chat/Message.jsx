@@ -15,7 +15,7 @@ const Message = ({ message }) => {
     <div className={`chat ${chatClassName}`}>
       <div className="chat-image avatar">
         <div className="w-10 rounded-full">
-          <img loading="lazy" alt="User avatar" src={profilePic} />
+          <img decoding="async"loading="lazy" alt="User avatar" src={profilePic} />
         </div>
       </div>
       <div className={`chat-bubble text-white ${bubbleColor}`}>

@@ -70,8 +70,8 @@ const ForgotPassword = () => {
   }
 
   return (
-   <div className="min-h-screen flex items-center justify-center bg-base-200  p-4 bg-center bg-cover"
-      style={{ backgroundImage: "url('/sky4.jpg')" }}
+   <div className="min-h-screen flex items-center  justify-center bg-amber-50  p-4 bg-center bg-cover"
+      
     >
       <div className="card w-full max-w-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 shadow-xl">
         <div className="card-body">

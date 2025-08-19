@@ -5,8 +5,8 @@ const ConversationList = () => {
   const connections = useSelector((store) => store.connections);
 
   return (
-    <div className="py-2 flex flex-col overflow-auto h-full">
-      <div className="px-3 py-2 text-gray-300">Your Crew</div>
+    <div className=" flex flex-col overflow-auto h-full">
+      {/* <div className="  text-gray-300">Your Crew</div> */}
       {connections && connections.map((conv) => (
         <Conversation key={conv._id} conversation={conv} />
       ))}
