@@ -15,12 +15,19 @@ const Feed = () => {
   const getFeed = async () => {
     if (feed && feed.length > 0) return;
      
-    try {
-      const res = await axios.get(BASE_URL + "/feed", { withCredentials: true });
+     try {
+    const res = await axios.get(BASE_URL + "/feed", { withCredentials: true });
+    
+    if (Array.isArray(res.data)) {
       dispatch(addFeed(res.data));
-    } catch (error) {
-      console.log("Error fetching feed:", error);
+    } else {
+      console.error("API response is not an array:", res.data);
+      dispatch(addFeed([])); 
     }
+  } catch (error) {
+    console.log("Error fetching feed:", error);
+    dispatch(addFeed([]));
+  }
   };
 
   useEffect(() => {

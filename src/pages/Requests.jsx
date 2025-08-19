@@ -208,7 +208,7 @@ const Requests = () => {
             return (
               <div
                 key={_id}
-                className="bg-slate-800 border border-slate-700 rounded-xl shadow-lg p-6 hover:bg-slate-750 hover:border-slate-600 transition-all duration-200"
+                className=" border border-slate-700 rounded-xl shadow-lg p-6 hover:bg-slate-750 hover:border-slate-600 transition-all duration-200"
               >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
