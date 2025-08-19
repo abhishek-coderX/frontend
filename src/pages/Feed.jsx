@@ -45,9 +45,9 @@ const Feed = () => {
   if (feed.length === 0) {
     return (
       <div className="flex justify-center  items-center min-h-screen bg-cover bg-center bg-no-repeat"
-     style={{ 
-      backgroundImage: "url('/sky1.jpg')",
-    }}
+    //  style={{ 
+    //   backgroundImage: "url('/sky1.jpg')",
+    // }}
     
     >
        
@@ -61,8 +61,8 @@ const Feed = () => {
   return (
     <div
       className="min-h-screen flex items-center justify-center p-4 bg-cover bg-center bg-no-repeat"
-    style={{ 
-      backgroundImage: "url('/sky3.jpg')"}}
+    // style={{ 
+    //   backgroundImage: "url('/sky3.jpg')"}}
    >
        
   

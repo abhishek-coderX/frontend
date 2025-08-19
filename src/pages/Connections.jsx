@@ -38,7 +38,6 @@ const Connections = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-base-200 bg-center text-gray-100"
       
-       // Correct opacity format (0-1)
     
     
       >
@@ -54,11 +53,11 @@ const Connections = () => {
 
   return (
     <div className="min-h-screen text-gray-100 p-4" 
-    style={{ 
-      backgroundImage: "url('/sky1.jpg')",
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-    }}
+    // style={{ 
+    //   backgroundImage: "url('/sky1.jpg')",
+    //   backgroundSize: "cover",
+    //   backgroundPosition: "center",
+    // }}
     >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8">

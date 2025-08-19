@@ -28,7 +28,6 @@ export const Navbar2 = () => {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
 
-  // Proper logout function with axios call (same as your working Navbar)
   const handleLogout = async () => {
     try {
       await axios.post(
@@ -38,11 +37,12 @@ export const Navbar2 = () => {
           withCredentials: true,
         }
       );
+       localStorage.removeItem('user');
       dispatch(removeUser());
       navigate("/login");
     } catch (error) {
       console.error("Logout failed", error);
-      // Even if logout API fails, clear local state
+          localStorage.removeItem('user');
       dispatch(removeUser());
       navigate("/login");
     }

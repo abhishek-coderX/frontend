@@ -110,14 +110,121 @@
 // export default App;
 
 
+// import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import axios from "axios";
+// import { BASE_URL } from "../utils/constants";
+// import { addUser } from "../utils/userSlice";
+// import { addConnections } from "../utils/connectionSlice";
+// import { useEffect, useState, Suspense, lazy } from "react";
+// import { Navbar2 } from "./components/Navbar2";
+
+// const Login = lazy(() => import("./pages/LoginSignup"));
+// const Feed = lazy(() => import("./pages/Feed"));
+// const Profile = lazy(() => import("./pages/Profile"));
+// const Connections = lazy(() => import("./pages/Connections"));
+// const Requests = lazy(() => import("./pages/Requests"));
+// const ProfileView = lazy(() => import("./components/ProfileView"));
+// const EditPassword = lazy(() => import("./components/EditPassword"));
+// const ForgotPassword = lazy(() => import("./components/ForgotPassword"));
+// const ChatPage = lazy(() => import("./pages/ChatPage"));
+
+// function App() {
+//   const [isLoading, setIsLoading] = useState(true);
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+//   const location = useLocation();
+//   const userData = useSelector((store) => store?.user);
+
+//   const fetchUser = async () => {
+//     if (userData) {
+//       setIsLoading(false);
+//       return;
+//     }
+//     try {
+//       const [profileRes, connectionsRes] = await Promise.all([
+//         axios.get(BASE_URL + "/profile/view", { withCredentials: true }),
+//         axios.get(BASE_URL + "/user/connections", { withCredentials: true }),
+//       ]);
+//       dispatch(addUser(profileRes.data));
+//       dispatch(addConnections(connectionsRes.data?.data || []));
+//     } catch (error) {
+//       if (error.response?.status === 401) {
+//         dispatch(addUser(null));       // clear user
+//         dispatch(addConnections([]));  // clear connections
+//       }
+//       console.log("Error fetching user:", error);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchUser();
+//   }, []);
+
+//   useEffect(() => {
+//     if (isLoading) return;
+
+//     const publicRoutes = ["/login", "/signup", "/forgot/password"];
+
+//     if (!userData && !publicRoutes.includes(location.pathname)) {
+//       navigate("/login");
+//     }
+
+//     if (userData && publicRoutes.includes(location.pathname)) {
+//       navigate("/");
+//     }
+//   }, [userData, location.pathname, navigate, isLoading]);
+
+//   if (isLoading) {
+//     return (
+//       <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] w-full">
+//         <p className="text-xl text-white">Loading...</p>
+//       </div>
+//     );
+//   }
+
+//   return (
+//     <div
+//       className="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
+//     >
+//       <Navbar2 />
+//       <div className="h-full w-full">
+//         <Suspense
+//           fallback={
+//             <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] w-full">
+//               <p className="text-xl text-white">Loading...</p>
+//             </div>
+//           }
+//         >
+//           <Routes>
+//             <Route path="/" element={<Feed />} />
+//             <Route path="/login" element={<Login />} />
+//             <Route path="/profile" element={<Profile />} />
+//             <Route path="/profile/view" element={<ProfileView />} />
+//             <Route path="/requests" element={<Requests />} />
+//             <Route path="/connections" element={<Connections />} />
+//             <Route path="/password/edit" element={<EditPassword />} />
+//             <Route path="/forgot/password" element={<ForgotPassword />} />
+//             <Route path="/chat/:userId" element={<ChatPage />} />
+//             <Route path="/chat" element={<ChatPage />} />
+//           </Routes>
+//         </Suspense>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default App;
+
+
 import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
-import { BASE_URL } from "../utils/constants";
-import { addUser } from "../utils/userSlice";
-import { addConnections } from "../utils/connectionSlice";
 import { useEffect, useState, Suspense, lazy } from "react";
 import { Navbar2 } from "./components/Navbar2";
+import ProtectedRoute from "./components/ProtectedRoute.jsx"; 
+import { addUser } from "../utils/userSlice.js";
 
 const Login = lazy(() => import("./pages/LoginSignup"));
 const Feed = lazy(() => import("./pages/Feed"));
@@ -130,56 +237,62 @@ const ForgotPassword = lazy(() => import("./components/ForgotPassword"));
 const ChatPage = lazy(() => import("./pages/ChatPage"));
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false); 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const userData = useSelector((store) => store?.user);
 
-  const fetchUser = async () => {
-    if (userData) {
-      setIsLoading(false);
-      return;
-    }
-    try {
-      const [profileRes, connectionsRes] = await Promise.all([
-        axios.get(BASE_URL + "/profile/view", { withCredentials: true }),
-        axios.get(BASE_URL + "/user/connections", { withCredentials: true }),
-      ]);
-      dispatch(addUser(profileRes.data));
-      dispatch(addConnections(connectionsRes.data?.data || []));
-    } catch (error) {
-      if (error.response?.status === 401) {
-        dispatch(addUser(null));       // clear user
-        dispatch(addConnections([]));  // clear connections
-      }
-      console.log("Error fetching user:", error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  // Removed the fetchUser function and its useEffect hook.
+  // The ProtectedRoute now handles the authentication check before rendering pages.
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
+  // This useEffect will still handle redirections based on authentication status and current path
   useEffect(() => {
     if (isLoading) return;
 
-    const publicRoutes = ["/login", "/signup", "/forgot/password"];
+    const publicRoutes = ["/login", "/signup", "/forgot/password"]; 
 
+    // If no user data (not logged in) and current route is not public, redirect to login
     if (!userData && !publicRoutes.includes(location.pathname)) {
       navigate("/login");
     }
 
+    // If user data exists (logged in) and current route is public (e.g., login page), redirect to home
     if (userData && publicRoutes.includes(location.pathname)) {
       navigate("/");
     }
   }, [userData, location.pathname, navigate, isLoading]);
+   const [isAuthenticating, setIsAuthenticating] = useState(true); 
 
-  if (isLoading) {
+  useEffect(() => {
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        dispatch(addUser(JSON.parse(storedUser)));
+      }
+    } catch (error) {
+      console.error("Failed to load user from localStorage", error);
+    } finally {
+      setIsAuthenticating(false);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isAuthenticating) return; 
+
+    const publicRoutes = ["/login", "/signup", "/forgot/password"];
+    
+    if (!userData && !publicRoutes.includes(location.pathname)) {
+      navigate("/login");
+    }
+    if (userData && publicRoutes.includes(location.pathname)) {
+      navigate("/");
+    }
+  }, [userData, location.pathname, navigate, isAuthenticating]);
+
+  if (isAuthenticating) {
     return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] w-full">
+      <div className="flex items-center justify-center min-h-screen w-full ">
         <p className="text-xl text-white">Loading...</p>
       </div>
     );
@@ -189,26 +302,29 @@ function App() {
     <div
       className="relative min-h-screen w-full bg-cover bg-center bg-no-repeat"
     >
-      <Navbar2 />
+      {userData && <Navbar2 />} 
       <div className="h-full w-full">
         <Suspense
           fallback={
-            <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] w-full">
-              <p className="text-xl text-white">Loading...</p>
+            <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] w-full ">
+              <p className="text-xl text-white">Loading page content...</p>
             </div>
           }
         >
           <Routes>
-            <Route path="/" element={<Feed />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/view" element={<ProfileView />} />
-            <Route path="/requests" element={<Requests />} />
-            <Route path="/connections" element={<Connections />} />
-            <Route path="/password/edit" element={<EditPassword />} />
             <Route path="/forgot/password" element={<ForgotPassword />} />
-            <Route path="/chat/:userId" element={<ChatPage />} />
-            <Route path="/chat" element={<ChatPage />} />
+
+            <Route element={<ProtectedRoute />}>
+              <Route path="/" element={<Feed />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/profile/view" element={<ProfileView />} />
+              <Route path="/requests" element={<Requests />} />
+              <Route path="/connections" element={<Connections />} />
+              <Route path="/password/edit" element={<EditPassword />} />
+              <Route path="/chat/:userId" element={<ChatPage />} />
+              <Route path="/chat" element={<ChatPage />} />
+            </Route>
           </Routes>
         </Suspense>
       </div>
