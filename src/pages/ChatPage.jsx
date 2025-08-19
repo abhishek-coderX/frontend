@@ -10,7 +10,6 @@ const ChatPage = () => {
     
     >
       <div className="w-full max-w-6xl h-[80vh] md:rounded-2xl shadow-2xl border-gray-700 bg-gray-900 bg-opacity-90 flex flex-col md:flex-row overflow-hidden transition-all duration-300">
-        {/* Fake window bar for code editor feel */}
        
         <div className="w-full md:w-1/3 bg-gray-800 border-r border-gray-700 p-2">
           <ConversationList />

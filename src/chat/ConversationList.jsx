@@ -6,7 +6,6 @@ const ConversationList = () => {
 
   return (
     <div className=" flex flex-col overflow-auto h-full">
-      {/* <div className="  text-gray-300">Your Crew</div> */}
       {connections && connections.map((conv) => (
         <Conversation key={conv._id} conversation={conv} />
       ))}
