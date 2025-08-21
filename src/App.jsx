@@ -224,6 +224,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState, Suspense, lazy } from "react";
 import { Navbar2 } from "./components/Navbar2";
 import ProtectedRoute from "./components/ProtectedRoute.jsx"; 
+import { addUser } from "../utils/userSlice.js";
 
 const Login = lazy(() => import("./pages/LoginSignup"));
 const Feed = lazy(() => import("./pages/Feed"));
@@ -255,23 +256,23 @@ function App() {
       navigate("/");
     }
   }, [userData, location.pathname, navigate, isLoading]);
-  //  const [isAuthenticating, setIsAuthenticating] = useState(true); 
-
-  // useEffect(() => {
-  //   try {
-  //     const storedUser = localStorage.getItem('user');
-  //     if (storedUser) {
-  //       dispatch(addUser(JSON.parse(storedUser)));
-  //     }
-  //   } catch (error) {
-  //     console.error("Failed to load user from localStorage", error);
-  //   } finally {
-  //     setIsAuthenticating(false);
-  //   }
-  // }, [dispatch]);
+   const [isAuthenticating, setIsAuthenticating] = useState(true); 
 
   useEffect(() => {
-    // if (isAuthenticating) return; 
+    try {
+      const storedUser = localStorage.getItem('user');
+      if (storedUser) {
+        dispatch(addUser(JSON.parse(storedUser)));
+      }
+    } catch (error) {
+      console.error("Failed to load user from localStorage", error);
+    } finally {
+      setIsAuthenticating(false);
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isAuthenticating) return; 
 
     const publicRoutes = ["/login", "/signup", "/forgot/password"];
     
@@ -281,15 +282,15 @@ function App() {
     if (userData && publicRoutes.includes(location.pathname)) {
       navigate("/");
     }
-  }, [userData, location.pathname, navigate, ]);
+  }, [userData, location.pathname, navigate, isAuthenticating]);
 
-  // if (isAuthenticating) {
-  //   return (
-  //     <div className="flex items-center justify-center min-h-screen w-full ">
-  //       <p className="text-xl text-white">Loading...</p>
-  //     </div>
-  //   );
-  // }
+  if (isAuthenticating) {
+    return (
+      <div className="flex items-center justify-center min-h-screen w-full ">
+        <p className="text-xl text-white">Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div
