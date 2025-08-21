@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Heart, X } from "lucide-react";
 import { useDispatch } from "react-redux";
@@ -9,7 +7,7 @@ import { motion, useMotionValue, useTransform } from "framer-motion";
 
 export default function UserCards({ user, isTopCard, removeUser }) {
   const dispatch = useDispatch();
-  
+
   const x = useMotionValue(0);
   const rotate = useTransform(x, [-250, 250], [-25, 25]);
   const opacity = useTransform(x, [-250, 0, 250], [0, 1, 0]);
@@ -62,12 +60,17 @@ export default function UserCards({ user, isTopCard, removeUser }) {
     >
       <div className="bg-white rounded-3xl  overflow-hidden w-80 mx-auto transform hover:scale-105 transition-transform duration-300">
         <div className="relative">
-          <img decoding="async"loading="lazy"
-            src={user.photoUrl}
+          <img
+            decoding="async"
+            loading="lazy"
+            src={
+              user.photoUrl ||
+              "https://via.placeholder.com/400x300?text=No+Image"
+            }
             alt={`${user.firstName} ${user.lastName}`}
             className="w-full h-60 object-cover pointer-events-none"
           />
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/0 to-transparent p-4">
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-4">
             <h1 className="text-white text-2xl font-bold mb-1">
               {user.firstName} {user.lastName}
             </h1>
@@ -103,18 +106,21 @@ export default function UserCards({ user, isTopCard, removeUser }) {
           </div>
 
           <div className="flex justify-center items-center space-x-8 mt-4">
-            <button 
+            <button
               className="flex items-center cursor-pointer justify-center px-6 py-3 bg-gray-100 hover:bg-gray-200 rounded-full transition-colors duration-200"
               onClick={() => {
                 handleRequest("ignored", user._id);
                 removeUser();
               }}
             >
-              <X className="w-5 h-5 text-gray-600 mr-2 cursor-pointer" strokeWidth={2} />
+              <X
+                className="w-5 h-5 text-gray-600 mr-2 cursor-pointer"
+                strokeWidth={2}
+              />
               <span className="text-gray-700 font-medium">Ignore</span>
             </button>
 
-            <button 
+            <button
               className="flex items-center cursor-pointer justify-center px-6 py-3 bg-gradient-to-r from-pink-500 to-red-500 hover:from-pink-600 hover:to-red-600 rounded-full transition-all duration-200"
               onClick={() => {
                 handleRequest("interested", user._id);
@@ -130,6 +136,3 @@ export default function UserCards({ user, isTopCard, removeUser }) {
     </motion.div>
   );
 }
-
-
-
