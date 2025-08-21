@@ -242,22 +242,16 @@ function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const userData = useSelector((store) => store?.user);
-
-  // Removed the fetchUser function and its useEffect hook.
-  // The ProtectedRoute now handles the authentication check before rendering pages.
-
-  // This useEffect will still handle redirections based on authentication status and current path
+  
   useEffect(() => {
     if (isLoading) return;
 
     const publicRoutes = ["/login", "/signup", "/forgot/password"]; 
 
-    // If no user data (not logged in) and current route is not public, redirect to login
     if (!userData && !publicRoutes.includes(location.pathname)) {
       navigate("/login");
     }
 
-    // If user data exists (logged in) and current route is public (e.g., login page), redirect to home
     if (userData && publicRoutes.includes(location.pathname)) {
       navigate("/");
     }
