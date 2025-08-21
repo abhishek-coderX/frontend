@@ -185,7 +185,7 @@ const LoginSignup = () => {
         { email, password },
         { withCredentials: true }
       );
-            localStorage.setItem('user', JSON.stringify(res.data)); 
+            // localStorage.setItem('user', JSON.stringify(res.data)); 
 
       dispatch(addUser(res.data));
       navigate("/");
@@ -204,7 +204,7 @@ const LoginSignup = () => {
         { firstName, lastName, email, password, skills: ["testing"] },
         { withCredentials: true }
       );
-      localStorage.setItem('user', JSON.stringify(res?.data?.data)); 
+      // localStorage.setItem('user', JSON.stringify(res?.data?.data)); 
       dispatch(addUser(res?.data?.data));
       navigate("/profile/view");
     } catch (error) {
